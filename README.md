@@ -2,7 +2,7 @@
 An ongoing library of my machine learning projects.
 
 ## Basics
-- [ ] MNIST (PyTorch)
+- [x] MNIST (PyTorch)
 - [ ] Pathology Classification for Medical Images (PyTorch)
 - [ ] AI Explainability for Multi-label Image Classification
 - [ ] Transfer learning for 2D Bounding box detection on new objects
