@@ -13,4 +13,4 @@ An ongoing library of my machine learning projects.
 - [ ] Using CycleGAN for image transformation
 
 
-<sup>1</sup>: Replicate [paper](https://arxiv.org/pdf/2104.00678v1.pdf) as well
+<sup>1</sup>: Implement [paper](https://arxiv.org/pdf/2104.00678v1.pdf) as well
