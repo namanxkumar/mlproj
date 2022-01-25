@@ -1,5 +1,5 @@
-# Machine Learning Projects
-An ongoing library of my machine learning projects.
+# Machine Learning Implementations
+An ongoing library of my machine learning implementations.
 
 ## Basics
 - [x] MNIST (PyTorch) - Model and Training
