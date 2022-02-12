@@ -3,6 +3,12 @@ import torch
 import torch.nn as nn
 import torch.functional as F
 
+SEED = 101
+random.seed(SEED)
+torch.manual_seed(SEED)
+torch.cuda.manual_seed(SEED)
+torch.backends.cudnn.deterministic = True
+
 class Encoder(nn.Module):
     def __init__(self, input_size, embedding_size, hidden_size, dropout):
         super(Encoder, self).__init__()
