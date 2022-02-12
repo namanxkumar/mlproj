@@ -1,5 +1,4 @@
-from json import encoder
-from unicodedata import bidirectional
+from random import random
 import torch
 import torch.nn as nn
 import torch.functional as F
@@ -134,4 +133,38 @@ class Decoder(nn.Module):
         # prediction = [batch_size, output_size]
 
         return prediction, hidden.squeeze(0)
+
+
+class Seq2SeqA(nn.Module):
+    def __init__(self, encoder, decoder, device):
+        super(Seq2SeqA, self).__init__()
+        self.encoder = encoder
+        self.decoder = decoder
+        self.device = device
+
+    def forward(self, input, target, teacher_force_ratio = 0.5):
+        # input = [batch_size, input_size]
+        # target = [batch_size, target_size]
         
+        batch_size = input.shape[0]
+        target_size = target.shape[1]
+        target_vocabulary_size = self.decoder.output_dim
+        
+        outputs = torch.zeros(target_size, batch_size, target_vocabulary_size).to(self.device)
+
+        encoder_outputs, hidden = self.encoder(input)
+
+        decoder_input = target[:,0]
+
+        for t in range(1, target_size):
+            output, hidden = self.decoder(decoder_input, hidden, encoder_outputs)
+
+            outputs[t] = output
+
+            teacher_force = random.random() < teacher_force_ratio
+
+            prediction = output.argmax(1)
+
+            input = target[t] if teacher_force else prediction
+
+        return outputs
